@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import configparser
+
+# creating config object
+config = configparser.ConfigParser()
+conffilepath = os.path.join('C:/Users/HP/Desktop/Django/portfolio_project', 'portfolio.conf')
+config.read(conffilepath)
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -32,6 +39,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'job.apps.JobConfig',
+    'blog.apps.BlogConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -75,8 +84,12 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config.get('Credentials', 'NAME'),
+        'USER': config.get('Credentials', 'USER'),
+        'PASSWORD': config.get('Credentials', 'PASSWORD'),
+        'HOST': config.get('Credentials', 'HOST'),
+        'PORT': config.get('Credentials', 'PORT')
     }
 }
 
@@ -117,4 +130,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR, 'portfolio/static/')
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
