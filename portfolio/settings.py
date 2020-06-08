@@ -32,7 +32,7 @@ SECRET_KEY = '4ow_3758&3vpaixiqoa@k2c=i2t3+m%g9x_-5!faipg*_8q@=-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['ubuntu@ec2-3-6-41-226.ap-south-1.compute.amazonaws.com']
 
 
 # Application definition
