@@ -84,12 +84,17 @@ WSGI_APPLICATION = 'portfolio.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config.get('Credentials', 'NAME'),
-        'USER': config.get('Credentials', 'USER'),
-        'PASSWORD': config.get('Credentials', 'PASSWORD'),
-        'HOST': config.get('Credentials', 'HOST'),
-        'PORT': config.get('Credentials', 'PORT')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        #FOR POSTGRES DATABASE
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'NAME': config.get('Credentials', 'NAME'),
+        # 'USER': config.get('Credentials', 'USER'),
+        # 'PASSWORD': config.get('Credentials', 'PASSWORD'),
+        # 'HOST': config.get('Credentials', 'HOST'),
+        # 'PORT': config.get('Credentials', 'PORT')
+
     }
 }
 
